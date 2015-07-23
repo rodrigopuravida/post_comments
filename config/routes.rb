@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   end
 
   # get 'new_post_comment' => 'comments#new'
+  # resources :comments
 
 end
