@@ -1,0 +1,44 @@
+<div class="col-sm-8">
+  <table class="table table-striped">
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+          <%= bootstrap_form_for [post,Vote.new] do |f| %>
+              <%= f.button "", value: 'up', class: 'btn btn-primary btn-xs glyphicon glyphicon-chevron-up' %><br>
+              <%= f.button "", value: 'down', class: 'btn btn-primary btn-xs glyphicon glyphicon-chevron-down' %>
+            <% end %>
+
+            <%= post.votes.reduce(0){ |sum,v| sum + v.value} %>
+          </td>
+          <td>
+            <a href="<%= post.link %>"><%= post.title %></a>
+          </td>
+          <td><%= post.user.display_name %></td>
+          <td><%= format_creation_time post %></td>
+          <td>0 Comments</td>
+          <td>
+          <!--% if @current_user && @current_user.id == post.user.id %-->
+          <% if post.owned_by? @current_user %>
+            <%= link_to "", edit_post_path(post), class: 'glyphicon glyphicon-pencil' %>
+            <%= link_to "", post, method:'delete', class: 'glyphicon glyphicon-trash' %>
+            <%= link_to "", new_post_comment_path(post), class: 'glyphicon glyphicon-comment' %><br>
+
+
+          <% end %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-sm-4">
+  <div class="advertisement">
+    <div class="text">
+      THIS IS AN<br>
+      ADVERTISEMENT
+    </div>
+  </div>
+</div>

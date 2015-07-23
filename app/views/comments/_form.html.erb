@@ -1,0 +1,8 @@
+<%= bootstrap_form_for @comment do |f| %>
+  <%= f.text_field :body, placeholder: 'Comment' %>
+  <%= f.text_field :user_id, placeholder: 'User Id' %>
+  <%= f.text_field :post_id, placeholder: 'Post Id' %>
+  <%= f.primary "Comment as Primary" %>
+<% end %>
+
+
